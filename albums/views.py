@@ -19,8 +19,8 @@ class AlbumView(generics.ListCreateAPIView, PageNumberPagination):
         return Album.objects.all()
 
     def perform_create(self, serializer):
-        ipdb.set_trace()
-        return serializer.save(user_id=self.request.user)
+        # ipdb.set_trace()
+        return serializer.save(user_id=self.request.user.id)
 
     # def get(self, request):
     #     """

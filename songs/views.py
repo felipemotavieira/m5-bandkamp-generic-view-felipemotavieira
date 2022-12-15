@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from .serializers import SongSerializer
 from .models import Song
 from albums.models import Album
-
+import ipdb
 
 class SongView(generics.ListCreateAPIView, PageNumberPagination):
     authentication_classes = [JWTAuthentication]
@@ -16,8 +16,9 @@ class SongView(generics.ListCreateAPIView, PageNumberPagination):
     serializer_class = SongSerializer
     queryset = Song.objects.all()
 
-    def perform_create(self, serializer, pk):
-        album = get_object_or_404(Album, pk=pk)
+    def perform_create(self, serializer):
+        album = get_object_or_404(Album, pk=self.request.parser_context['kwargs']['pk'])
+        ipdb.set_trace()
         
         return serializer.save(album=album)
 
