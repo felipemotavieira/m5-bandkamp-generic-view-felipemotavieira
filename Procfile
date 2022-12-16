@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --no-input && python manage.py migrate && gunicorn -b https://web-production-e8b5.up.railway.app:8000 bandkamp.wsgi --log-level debug
+web: python manage.py collectstatic --no-input && python manage.py migrate && gunicorn bandkamp.wsgi --log-level debug
